@@ -188,7 +188,7 @@
         </section>
 
         <!-- AI Contact Section -->
-        <section id="contact-ai">
+        <section id="contact-ai" class="relative z-10 pt-12 pb-24 px-4">
             <h2 class="text-4xl font-bold text-center text-white glow-text mb-12">AI-Powered Contact Assistant</h2>
             <div class="glass-card max-w-3xl mx-auto p-8">
                 <p class="text-center text-gray-300 mb-6">Let my AI assistant help you draft a message. Fill in the
@@ -200,6 +200,12 @@
                         <input type="text" id="userName"
                             class="w-full bg-gray-900/50 border border-gray-600 rounded-lg px-3 py-2 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
                             placeholder="e.g., Jane Doe">
+                    </div>
+                    <div>
+                        <label for="userEmail" class="block text-sm font-medium text-blue-300 mb-1">Your Email</label>
+                        <input type="email" id="userEmail"
+                            class="w-full bg-gray-900/50 border border-gray-600 rounded-lg px-3 py-2 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                            placeholder="e.g., jane.doe@example.com">
                     </div>
                     <div>
                         <label for="userContext" class="block text-sm font-medium text-blue-300 mb-1">Company / Reason
@@ -221,7 +227,7 @@
                         </select>
                     </div>
                     <button id="generateMessageBtn"
-                        class="w-full bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105 shadow-lg shadow-blue-500/20 flex items-center justify-center space-x-2">
+                        class="w-full bg-purple-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-purple-300 transition duration-300 transform hover:scale-105 shadow-lg shadow-blue-500/20 flex items-center justify-center space-x-2">
                         <span>✨ Generate Message</span>
                         <svg id="loadingSpinner" class="animate-spin h-5 w-5 text-white hidden"
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -241,6 +247,29 @@
                         <p id="errorMessage" class="text-red-400 text-sm mt-2 hidden">Something went wrong. Please try
                             again.
                         </p>
+                    </div>
+                    <!-- Send Button -->
+                    <button id="sendMessageBtn"
+                        class="w-full bg-blue-500 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105 shadow-lg shadow-green-500/20 flex items-center justify-center space-x-2 mt-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                        </svg>
+                        <span>Send to jesseedwing@gmail.com</span>
+                    </button>
+
+                    <!-- Success Message -->
+                    <div id="successMessage"
+                        class="success-message text-center p-4 mt-4 bg-green-900/30 rounded-lg border border-green-600/50">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-400 mx-auto mb-2" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <p class="text-green-300 font-medium">Your message is ready to be sent!</p>
+                        <p class="text-green-200 text-sm mt-1">Your email client will open with a pre-populated message
+                            to
+                            jesseedwing@gmail.com</p>
                     </div>
                 </div>
             </div>
