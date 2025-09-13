@@ -1,4 +1,3 @@
-// The existing JavaScript code remains unchanged
 document.addEventListener('DOMContentLoaded', function () {
     const canvas = document.getElementById('bg-canvas');
     if (!canvas) return;
@@ -167,15 +166,16 @@ document.addEventListener('DOMContentLoaded', function () {
         generatedMessage.value = 'Generating...';
         errorMessage.classList.add('hidden');
 
-        const systemPrompt = `You are a professional communication assistant for JESSE EDWWING J., a skilled Billing Engineer (BSCS) and Full-Stack Developer from Madagascar. Your task is to draft a concise, professional, and engaging introductory contact message on behalf of a user who wants to get in touch with JESSE EDWWING.
 
-                    JESSE EDWWING's skills include: Web Development, Mobile Development (Flutter, React Native), Database Administration (SQL), Linux, and Python.
-                    
-                    Generate a message based on the user's details and desired tone. The message should be addressed to JESSE EDWWING.`;
+        const systemPrompt = `You are a professional communication assistant for JESSE EDWING J., a skilled Billing Engineer (BSCS) and Full-Stack Developer from Madagascar. Your task is to draft a concise, professional, and engaging introductory contact message on behalf of a user who wants to get in touch with JESSE EDWING.
 
-        const userQuery = `My name is ${userName}. I am contacting you from ${userContext}. Please draft a message for me to send to JESSE EDWWING with a ${messageTone} tone.`;
+            JESSE EDWING's skills include: Web Development, Mobile Development (Flutter, React Native), Database Administration (SQL), Linux, and Python.
+            
+            Generate a message based on the user's details and desired tone. The message should be addressed to JESSE EDWING.`;
 
-        const apiKey = ""; // You need to add your API key here
+        const userQuery = `My name is ${userName}. I am contacting you from ${userContext}. Please draft a message for me to send to JESSE EDWING with a ${messageTone} tone.`;
+
+        const apiKey = "AIzaSyD9IefGpSDBanhXWPmCjQTRxRatmugezZE";
         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
 
         const payload = {
@@ -212,5 +212,39 @@ document.addEventListener('DOMContentLoaded', function () {
             loadingSpinner.classList.add('hidden');
             generateMessageBtn.disabled = false;
         }
+    });
+
+    // Send button functionality
+    document.getElementById('sendMessageBtn').addEventListener('click', function () {
+        const message = document.getElementById('generatedMessage').value;
+        const userName = document.getElementById('userName').value || 'Sender';
+        const userEmail = document.getElementById('userEmail').value || '';
+
+        if (!message.trim()) {
+            alert('Please generate a message first before sending.');
+            return;
+        }
+
+        // Encode the message for use in a mailto link
+        const subject = `Message from ${userName}`;
+        const body = encodeURIComponent(message);
+        const email = userEmail ? `&from=${encodeURIComponent(userEmail)}` : '';
+
+        // Create mailto link
+        const mailtoLink = `mailto:jesseedwing@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}${email}`;
+
+        // Show success message
+        const successMessage = document.getElementById('successMessage');
+        successMessage.classList.add('show');
+
+        // Open email client
+        setTimeout(() => {
+            window.location.href = mailtoLink;
+        }, 1500);
+
+        // Hide success message after 5 seconds
+        setTimeout(() => {
+            successMessage.classList.remove('show');
+        }, 5000);
     });
 });
